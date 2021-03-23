@@ -2,6 +2,7 @@ const imagesArea = document.querySelector('.images');
 const gallery = document.querySelector('.gallery');
 const galleryHeader = document.querySelector('.gallery-header');
 const searchBtn = document.getElementById('search-btn');
+const searchField = document.getElementById('search');
 const sliderBtn = document.getElementById('create-slider');
 const sliderContainer = document.getElementById('sliders');
 // selected image 
@@ -60,8 +61,12 @@ const createSlider = (img) => {
   const prevNext = document.createElement('div');
   prevNext.className = "prev-next d-flex w-100 justify-content-between align-items-center";
   prevNext.innerHTML = ` 
-    <span class="prev" onclick="changeItem(-1)"><i class="fas fa-chevron-left"></i></span>
-    <span class="next" onclick="changeItem(1)"><i class="fas fa-chevron-right"></i></span>
+    <span class="prev" onclick="changeItem(-1)">
+      <i class="fas fa-chevron-left"></i>
+    </span>
+    <span class="next" onclick="changeItem(1)">
+      <i class="fas fa-chevron-right"></i>
+     </span>
   `;
 
   sliderContainer.appendChild(prevNext);
@@ -120,6 +125,11 @@ searchBtn.addEventListener('click', function () {
   const search = document.getElementById('search');
   getImages(search.value);
   sliders.length = 0;
+});
+
+searchField.addEventListener('keypress', (event) => {
+  if (event.key == 'Enter')
+    searchBtn.click();
 });
 
 sliderBtn.addEventListener('click', function () {
